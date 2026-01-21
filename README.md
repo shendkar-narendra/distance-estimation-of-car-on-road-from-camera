@@ -100,31 +100,12 @@ Only detections with class **`car`** are considered.
 
 For a predicted bounding box (B_p) and a ground-truth box (B_g):
 
-[
-\text{IoU}(B_p, B_g) =
-\frac{|B_p \cap B_g|}{|B_p \cup B_g|}
-]
+<img width="847" height="212" alt="image" src="https://github.com/user-attachments/assets/5247ca38-340c-4b53-90d1-8b8561666766" />
 
-Where:
-
-[
-|B_p \cup B_g| = |B_p| + |B_g| - |B_p \cap B_g|
-]
 
 ### 6.2 Intersection Computation
 
-[
-\begin{aligned}
-x_1 &= \max(x_{\min}^p, x_{\min}^g) \
-y_1 &= \max(y_{\min}^p, y_{\min}^g) \
-x_2 &= \min(x_{\max}^p, x_{\max}^g) \
-y_2 &= \min(y_{\max}^p, y_{\max}^g)
-\end{aligned}
-]
-
-[
-A_{\cap} = \max(0, x_2 - x_1) \cdot \max(0, y_2 - y_1)
-]
+<img width="887" height="248" alt="image" src="https://github.com/user-attachments/assets/a340a790-eef1-4966-bd6c-6ed1ae8109ef" />
 
 ---
 
@@ -134,39 +115,19 @@ A_{\cap} = \max(0, x_2 - x_1) \cdot \max(0, y_2 - y_1)
 
 A detection is considered correct if:
 
-[
-\max_{g \in G} \text{IoU}(p, g) \ge T
-\quad\text{with}\quad T = 0.5
-]
+<img width="976" height="72" alt="image" src="https://github.com/user-attachments/assets/ec956305-a0ab-417b-9c6f-923c2c4f94d0" />
+
 
 ### 7.2 Definitions
 
 Let (P) be the set of predictions and (G) the set of ground-truth objects.
 
-* **True Positive (TP)**
-  [
-  \exists g \in G : \text{IoU}(p,g) \ge T
-  ]
+<img width="731" height="281" alt="image" src="https://github.com/user-attachments/assets/a6c72057-179a-40fb-85dd-345e1b3ce051" />
 
-* **False Positive (FP)**
-  [
-  \forall g \in G : \text{IoU}(p,g) < T
-  ]
-
-* **False Negative (FN)**
-  [
-  \forall p \in P : \text{IoU}(p,g) < T
-  ]
 
 ### 7.3 Precision and Recall
 
-[
-\text{Precision} = \frac{TP}{TP + FP}
-]
-
-[
-\text{Recall} = \frac{TP}{TP + FN}
-]
+<img width="658" height="166" alt="image" src="https://github.com/user-attachments/assets/5ae06dbe-7f80-49e6-8152-f2b3d2606c95" />
 
 ---
 
@@ -192,12 +153,8 @@ This point approximates the contact point of the object with the ground.
 ### 8.2 Inverse Projection (Pixel → Ray)
 
 Using the intrinsic matrix:
+<img width="562" height="102" alt="image" src="https://github.com/user-attachments/assets/f3799190-92d6-4f49-8eac-48f3e6b2cf59" />
 
-[
-x = \frac{u - c_x}{f_x},
-\quad
-y = -\frac{v - c_y}{f_y}
-]
 
 This yields a 3D ray direction:
 

@@ -51,9 +51,7 @@ The following assumptions are explicitly made (as required by the task):
 2. The camera is:
 
    * mounted at a fixed height
-     [
-     h = 1.65 \text{ m}
-     ]
+   h = 1.65 m
    * aligned with the ground (no pitch or roll).
 3. Distance is measured as **planar distance on the ground**, not Euclidean distance in 3D.
 4. Only **cars** are considered for detection and evaluation.

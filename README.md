@@ -87,7 +87,7 @@ results = model(img)[0]
 
 Each detection provides:
 
-* Bounding box ( b_p = (x_{\min}, y_{\min}, x_{\max}, y_{\max}) )
+* Bounding box ( bp = (xmin, ymin, xmax, ymax) )
 * Predicted class ID
 
 Only detections with class **`car`** are considered.
@@ -176,7 +176,8 @@ Substituting into the ray equation:
 
 Planar distance on the ground:
 
-<img width="1148" height="80" alt="image" src="https://github.com/user-attachments/assets/c0378e73-6e87-4209-b11b-a14338c0b992" />
+<img width="1145" height="73" alt="image" src="https://github.com/user-attachments/assets/e4c914cb-f6ac-41c0-9a66-cba282f6b8c1" />
+
 
 
 This matches the definition used to compute the ground-truth distances.

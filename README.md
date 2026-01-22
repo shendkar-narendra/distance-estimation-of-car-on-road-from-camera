@@ -41,7 +41,6 @@ Where:
 * `(xmin, ymin, xmax, ymax)` = 2D bounding box
 * `distance` = ground truth distance (meters), precomputed from 3D KITTI annotations
 
----
 
 # 3. Assumptions
 
@@ -57,7 +56,6 @@ The following assumptions are explicitly made (as required by the task):
 4. Only **cars** are considered for detection and evaluation.
 5. Each ground-truth object can be matched to **at most one** detection (one-to-one matching).
 
----
 
 ## 4. Method Overview (Pipeline)
 
@@ -72,7 +70,6 @@ For each image, the following steps are executed **in order**:
 7. Visualize results (GT boxes in green, YOLO boxes in red).
 8. Compute precision, recall, and distance error plots.
 
----
 
 ## 5. Object Detection
 
@@ -92,7 +89,6 @@ Each detection provides:
 
 Only detections with class **`car`** are considered.
 
----
 
 ## 6. Intersection over Union (IoU)
 
@@ -107,7 +103,6 @@ For a predicted bounding box (B_p) and a ground-truth box (B_g):
 
 <img width="887" height="248" alt="image" src="https://github.com/user-attachments/assets/a340a790-eef1-4966-bd6c-6ed1ae8109ef" />
 
----
 
 ## 7. Matching Strategy and Evaluation
 
@@ -129,7 +124,6 @@ Let (P) be the set of predictions and (G) the set of ground-truth objects.
 
 <img width="658" height="166" alt="image" src="https://github.com/user-attachments/assets/5ae06dbe-7f80-49e6-8152-f2b3d2606c95" />
 
----
 
 ## 8. Depth Estimation (Monocular Geometry)
 
@@ -145,7 +139,6 @@ For a detected bounding box:
 
 This point approximates the contact point of the object with the ground.
 
----
 
 ### 8.2 Inverse Projection (Pixel → Ray)
 
@@ -159,7 +152,6 @@ This yields a 3D ray direction:
 (X, Y, Z) = (xZ, yZ, Z)
 ]
 
----
 
 ### 8.3 Ground Plane Intersection
 
@@ -182,7 +174,6 @@ Planar distance on the ground:
 
 This matches the definition used to compute the ground-truth distances.
 
----
 
 ## 9. Visualization
 
@@ -197,7 +188,6 @@ cv2.rectangle()
 cv2.putText()
 ```
 
----
 
 ## 10. Output
 
@@ -217,7 +207,6 @@ Each image contains:
 * Red YOLO boxes
 * Estimated distance and IoU
 
----
 
 ### 10.2 Logs
 
@@ -233,7 +222,6 @@ Contains per-detection values:
 image_id, GT distance, estimated distance, IoU
 ```
 
----
 
 ### 10.3 Plots
 
@@ -248,26 +236,11 @@ Output/plots/
 
 These plots are used to analyze systematic errors and failure cases.
 
----
 
 ## 11. Discussion of Failure Cases
 
 Large errors typically occur due to:
 
 * Inaccurate bounding boxes (partial occlusions)
-* Bottom of bounding box not lying on the ground
+* Bottom of the bounding box does not lie on the ground
 * Distant objects (small pixel error → large depth error)
-* Assumption of flat ground violated
-
----
-
-## 12. Conclusion
-
-This task demonstrates how:
-
-* Object detection can be quantitatively evaluated using IoU, precision, and recall.
-* Monocular distance estimation is possible using camera intrinsics and geometric assumptions.
-* Detection quality directly affects depth estimation accuracy.
-
-
-
